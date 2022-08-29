@@ -4,8 +4,7 @@ Swagger
 Link documentação: https://api-rick-and-morty-devbruno.herokuapp.com/docs/
 
 Endpoints (4 pontos)
-
-**
+##
 
 [POST] Criar usuários (1 ponto);
 [GET] Buscar todos os usuários (1 ponto);
@@ -13,8 +12,7 @@ Endpoints (4 pontos)
 [GET] Buscar personagens por nome (1 ponto).
 
 Requisitos (6 pontos)
-
-**
+##
 
 Persistência de dados no MongoDB Atlas (1 ponto);
 Formatação do código utilizando o Prettier (1 ponto);
