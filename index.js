@@ -6,7 +6,6 @@ const routesUser = require('./src/Routes/user.routes');
 const routesAuth = require('./src/Routes/auth.routes');
 const connectToDatabase = require('./src/database/MongoDB/database')
 
-const port = 3000;
 const app = express();
 
 connectToDatabase();
@@ -18,7 +17,7 @@ app.use(routesCharacters);
 app.use(routesUser);
 app.use(routesAuth);
 
-
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
 });
