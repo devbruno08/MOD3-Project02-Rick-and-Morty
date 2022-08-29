@@ -3,6 +3,7 @@ const cors = require('cors');
 const { config } = require('dotenv');
 const routesCharacters = require('./src/Routes/characters.routes');
 const routesUser = require('./src/Routes/user.routes');
+const routesAuth = require('./src/Routes/auth.routes');
 const connectToDatabase = require('./src/database/MongoDB/database')
 
 const port = 3000;
@@ -13,8 +14,9 @@ config();
 
 app.use(express.json());
 app.use(cors());
-app.use('/characters', routesCharacters);
-app.use('/users', routesUser);
+app.use(routesCharacters);
+app.use(routesUser);
+app.use(routesAuth);
 
 
 app.listen(port, () => {

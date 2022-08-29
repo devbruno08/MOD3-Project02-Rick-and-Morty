@@ -5,12 +5,18 @@ const findAllUsersService = async () => {
     return allUsers;
 };
 
-const createUsers = async (newUser) => {
+const findUserByIdService = async (id) => {
+    const userFinded = await users.findOne({ _id: id });
+    return userFinded;
+}
+
+const createUserService = async (newUser) => {
     const createdUser = await users.create(newUser);
     return createdUser;
 }
 
 module.exports = {
     findAllUsersService,
-    createUsers,
+    createUserService,
+    findUserByIdService,
 };

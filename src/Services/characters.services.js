@@ -1,38 +1,34 @@
-const character = require('../database/models/character.Schema');
+const Character = require('../database/models/character.Schema');
 const characterEntity = require('../entities/character.entity');
 
 async function findAllCharacterService() {
-    return await character.find();
+    return await Character.find();
 }
 
 async function findCharacterByIdService(id) {
-    const characterFinded = await character.findOne({ _id: id });
+    const characterFinded = await Character.findOne({ _id: id });
     return characterFinded;
 }
 
 async function createCharacterService(character) {
     const newCharacter = new characterEntity(character);
     newCharacter.validate();
-    const characterCreated = new character({...newCharacter.getCharacter() });
+    const characterCreated = new Character({...newCharacter.getCharacter() });
     characterCreated.save();
+    return characterCreated;
 }
 
-async function updateCharacterService(character) {
+async function updateCharacterService(character, characterID) {
     const updateCharacter = new characterEntity(character);
-    const updatedCharacter = {...updateCharacter.getCharacter(),
+    const updatedCharacter = {...updateCharacter.getCharacter()
     };
 
-    const characterUpdatedInDatabase = await character.findOneAndUpdate(
-        { id: character.id},
-        updatedCharacter,
-        {new: true },
+    return await Character.findOneAndUpdate({_id: characterID}, updatedCharacter, {new: true},
     );
-
-    return characterUpdatedInDatabase;
 }
 
 async function deleteCharacterService(id) {
-    const characterFinded = await character.findOneAndDelete({_id: id});
+    const characterFinded = await Character.findOneAndDelete({_id: id});
 
     return characterFinded;
 }

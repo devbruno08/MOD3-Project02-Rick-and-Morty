@@ -5,12 +5,22 @@ const findAllUserControl = async (req, res) => {
     if(allUsers.length == 0) {
         return res.status(404).send({
             message: 
-            'There is no user registered in the database',
+            'There is not user registered in the database',
         });
     }
 
     res.send(allUsers);
 };
+
+const findUserByIdControl = async (req, res) => {
+    const id = req.params.id;
+    const oneUser = await userServices.findUserByIdService(id);
+    if (oneUser) {
+        res.status(200).send(oneUser);
+    } else {
+        res.status(400).send({ message: 'User with id, is not hear'});
+    }
+}
 
 const createUserControl = async (req, res) => {
     const user = req.body;
@@ -22,4 +32,5 @@ const createUserControl = async (req, res) => {
 module.exports = {
     findAllUserControl,
     createUserControl,
+    findUserByIdControl,
 };

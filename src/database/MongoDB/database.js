@@ -4,7 +4,7 @@ const connectToDatabase = () => {
     console.log('Conectando com o banco de dados...');
     mongoose
       .connect(
-        'mongodb+srv://admin:admin@cluster0.2ixjxc3.mongodb.net/?retryWrites=true&w=majority', 
+        'mongodb+srv://admin:admin@cluster0.2ixjxc3.mongodb.net/API-Ricky-and-Morty?retryWrites=true&w=majority', 
         {
         useNewUrlParser: true,
         useUnifiedTopology: true,

@@ -23,7 +23,7 @@ async function findCharacterByIdControl(req, res) {
 async function createCharacterControl(req, res) {
     try{
         const character = req.body;
-        const characterCreated = await charactersService.createCharacterService( character,);
+        const characterCreated = await charactersService.createCharacterService(character);
         res.status(201).send(characterCreated);
     }catch (err) {
         console.log(err.message);
@@ -33,8 +33,9 @@ async function createCharacterControl(req, res) {
 
 async function updateCharacterControl(req, res){
     try{
+        const characterID = req.params.id;
         const character = req.body;
-        const characterUpdated = await charactersService.updateCharacterService(character);
+        const characterUpdated = await charactersService.updateCharacterService(character, characterID);
         res.status(200).send(characterUpdated);
     } catch(err) {
         res.status(400).send({ message: err.message });
