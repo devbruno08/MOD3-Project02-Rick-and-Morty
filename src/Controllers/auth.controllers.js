@@ -5,7 +5,7 @@ require('dotenv').config();
 const loginControl = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await authService.authService(email);
+  const user = await authService.loginService(email);
 
   if (!user) {
     return res
@@ -15,22 +15,15 @@ const loginControl = async (req, res) => {
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
 
+  console.log(user);
+
   if (!isPasswordValid) {
     return res.status(400).send({ message: 'Password is not valid' });
   }
 
   const token = authService.generateToken(user._id);
 
-  res.status(201).send({
-    user: {
-      id: user._id,
-      name,
-      userName,
-      email,
-      image,
-    },
-    token,
-  });
+  res.status(200).send({ token: token });
 };
 
 module.exports = {

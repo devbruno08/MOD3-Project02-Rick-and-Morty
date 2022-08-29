@@ -1,4 +1,5 @@
 const userServices = require('../Services/user.services');
+const bcrypt = require('bcryptjs');
 
 const findAllUserControl = async (req, res) => {
     const allUsers = await userServices.findAllUsersService();
@@ -24,8 +25,12 @@ const findUserByIdControl = async (req, res) => {
 
 const createUserControl = async (req, res) => {
     const user = req.body;
+    const encripted = await bcrypt.hash(user.password, 10);
+    user.password = encripted;
     const newUser = await userServices.createUserService(user);
     res.status(201).send(newUser);
+
+    
 
 };
 
