@@ -3,12 +3,17 @@ const characterEntity = require('../entities/character.entity');
 
 async function findAllCharacterService() {
     return await Character.find();
-}
+};
+
+async function searchCharacterService(name){
+    return await Character.findOne({name: name});
+
+};
 
 async function findCharacterByIdService(id) {
     const characterFinded = await Character.findOne({ _id: id });
     return characterFinded;
-}
+};
 
 async function createCharacterService(character) {
     const newCharacter = new characterEntity(character);
@@ -16,7 +21,7 @@ async function createCharacterService(character) {
     const characterCreated = new Character({...newCharacter.getCharacter() });
     characterCreated.save();
     return characterCreated;
-}
+};
 
 async function updateCharacterService(character, characterID) {
     const updateCharacter = new characterEntity(character);
@@ -25,13 +30,13 @@ async function updateCharacterService(character, characterID) {
 
     return await Character.findOneAndUpdate({_id: characterID}, updatedCharacter, {new: true},
     );
-}
+};
 
 async function deleteCharacterService(id) {
     const characterFinded = await Character.findOneAndDelete({_id: id});
 
     return characterFinded;
-}
+};
 
 module.exports = {
     findAllCharacterService,
@@ -39,4 +44,5 @@ module.exports = {
     createCharacterService,
     updateCharacterService,
     deleteCharacterService,
+    searchCharacterService,
 };

@@ -19,11 +19,11 @@ const loginControl = async (req, res) => {
     return res.status(400).send({ message: 'Password is not valid' });
   }
 
-  const token = authService.generateToken(user.id);
+  const token = authService.generateToken(user._id);
 
   res.status(201).send({
     user: {
-      id: user.id,
+      id: user._id,
       name,
       userName,
       email,

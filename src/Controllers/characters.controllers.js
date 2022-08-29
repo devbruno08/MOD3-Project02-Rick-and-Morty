@@ -10,6 +10,22 @@ async function findAllCharacterControl(req, res) {
     }
 }
 
+async function searchCharacterControl(req, res) {
+    try{
+        const name = req.query.name;
+
+        const searched = await charactersService.searchCharacterService(name);
+        if(!searched) {
+            res.status(404).send({ message: "Name is not found"});
+        } else{
+            res.status(200).send(searched);
+        }
+    } catch (err) {
+        res.status(404).send({ message: "Findind character error"})
+
+    };
+}
+
 async function findCharacterByIdControl(req, res) {
     const id = req.params.id;
     const oneCharacter = await charactersService.findCharacterByIdService(id);
@@ -59,4 +75,5 @@ module.exports = {
     createCharacterControl,
     updateCharacterControl,
     deleteCharacterControl,
+    searchCharacterControl,
 };
