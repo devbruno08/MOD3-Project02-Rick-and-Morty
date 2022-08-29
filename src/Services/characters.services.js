@@ -6,7 +6,8 @@ async function findAllCharacterService() {
 };
 
 async function searchCharacterService(name){
-    return await Character.findOne({name: name});
+    const characterSearch = await Character.findOne({name: name});
+    return characterSearch;
 
 };
 

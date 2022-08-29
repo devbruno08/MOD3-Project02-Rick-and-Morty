@@ -11,6 +11,10 @@ const app = express();
 connectToDatabase();
 config();
 
+const swagger = require("swagger-ui-express");
+const swaggerDocs = require("./src/docs/swagger.json");
+app.use("/docs", swagger.serve, swagger.setup(swaggerDocs));
+
 app.use(express.json());
 app.use(cors());
 app.use(routesCharacters);

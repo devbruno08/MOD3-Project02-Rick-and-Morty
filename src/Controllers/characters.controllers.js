@@ -13,7 +13,6 @@ async function findAllCharacterControl(req, res) {
 async function searchCharacterControl(req, res) {
     try{
         const name = req.query.name;
-
         const searched = await charactersService.searchCharacterService(name);
         if(!searched) {
             res.status(404).send({ message: "Name is not found"});
