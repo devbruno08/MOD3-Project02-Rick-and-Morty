@@ -3,9 +3,18 @@ const controllersCharacters = require('../Controllers/characters.controllers');
 
 route.get('/characters/search', controllersCharacters.searchCharacterControl);
 route.get('/characters', controllersCharacters.findAllCharacterControl);
-route.get('/characters/find/:id', controllersCharacters.findCharacterByIdControl);
+route.get(
+  '/characters/find/:id',
+  controllersCharacters.findCharacterByIdControl,
+);
 route.post('/characters/create', controllersCharacters.createCharacterControl);
-route.put('/characters/update/:id', controllersCharacters.updateCharacterControl);
-route.delete('/characters/delete/:id', controllersCharacters.deleteCharacterControl);
+route.put(
+  '/characters/update/:id',
+  controllersCharacters.updateCharacterControl,
+);
+route.delete(
+  '/characters/delete/:id',
+  controllersCharacters.deleteCharacterControl,
+);
 
 module.exports = route;
