@@ -15,7 +15,7 @@
         "description": "Test and development API"
       },
       {
-        "url": "https://dashboard.heroku.com/apps/api-rick-and-morty-devbruno",
+        "url": "https://api-rick-and-morty-devbruno.herokuapp.com/",
         "description": "Production API"
       }
     ],
